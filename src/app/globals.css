@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-noto-sans-kr);
+
+  --animate-rotate-border: rotateBorder 3s linear infinite;
+
+  --scrollbar-thumb: #c4c4c4;
+  --scrollbar-track: #faf5eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #ffffff;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Noto Sans KR, Arial,Helvetica,sans-serif;
+}
+
+@layer utilities {
+  /* WebKit: track #201307e0, thumb #e2b856e6 */
+  .scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  .scrollbar::-webkit-scrollbar-track:vertical {
+    border-right: 1px solid var(--scrollbar-thumb);
+  }
+
+  .scrollbar::-webkit-scrollbar-track:horizontal {
+    border-top: 1px solid var(--scrollbar-thumb);
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 9999px;
+    border: 2px solid var(--scrollbar-track);
+    background-clip: padding-box;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in srgb, var(--scrollbar-thumb) 88%, #ffffff);
+  }
+
+  .scrollbar::-webkit-scrollbar-button:single-button:vertical:decrement {
+    display: block;
+    height: 12px;
+    background: var(--scrollbar-track)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%23989898' d='M6 0l6 8H0z'/%3E%3C/svg%3E")
+      no-repeat center / 8px 5px;
+    border-bottom: 1px solid color-mix(in srgb, var(--scrollbar-thumb) 35%, transparent);
+  }
+
+  .scrollbar::-webkit-scrollbar-button:single-button:vertical:increment {
+    display: block;
+    height: 12px;
+    background: var(--scrollbar-track)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%23989898' d='M6 8L0 0h12z'/%3E%3C/svg%3E")
+      no-repeat center / 8px 5px;
+    border-top: 1px solid color-mix(in srgb, var(--scrollbar-thumb) 35%, transparent);
+  }
+
+  .scrollbar::-webkit-scrollbar-button:single-button:horizontal:decrement {
+    display: block;
+    width: 12px;
+    background: var(--scrollbar-track)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 12'%3E%3Cpath fill='%23989898' d='M0 6l8-6v12z'/%3E%3C/svg%3E")
+      no-repeat center / 5px 8px;
+    border-right: 1px solid color-mix(in srgb, var(--scrollbar-thumb) 35%, transparent);
+  }
+
+  .scrollbar::-webkit-scrollbar-button:single-button:horizontal:increment {
+    display: block;
+    width: 12px;
+    background: var(--scrollbar-track)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 12'%3E%3Cpath fill='%23989898' d='M8 6L0 0v12z'/%3E%3C/svg%3E")
+      no-repeat center / 5px 8px;
+    border-left: 1px solid color-mix(in srgb, var(--scrollbar-thumb) 35%, transparent);
+  }
+
+  .scrollbar::-webkit-scrollbar-corner {
+    background: var(--scrollbar-track);
+  }
+}
+
+
+@keyframes rotateBorder {
+  100% {
+    transform: rotate(1turn);
+  }
+}
